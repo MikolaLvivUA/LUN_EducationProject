@@ -7,7 +7,7 @@ module.exports = async (req, res) => {
         const registeredUser = await userService.registerUser(creatingData);
         const {id, email} = registeredUser;
 
-        await emailService.sendEmail(email);
+        await emailService.sendEmail(email, 'Hello! Thanks for registering on our mega resource', 'HELLO FRIEND!');
 
         res.json(`Your user with id:${id} has been registered please login in`);
 
