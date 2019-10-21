@@ -38,6 +38,13 @@ module.exports = (sequelize, DataTypes) => {
                     msg: 'Please enter your password'
                 }
             }
+        },
+        photo_path: {
+            type: DataTypes.STRING
+        },
+        created_at: {
+            type: DataTypes.DATE,
+            defaultValue: sequelize.fn('now')
         }
     }, {
         tableName: 'user',

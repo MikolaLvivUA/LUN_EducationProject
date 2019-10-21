@@ -41,6 +41,13 @@ module.exports = (sequelize, DataTypes) => {
                     msg: "price can't contain letters"
                 }
             }
+        },
+        created_at: {
+            type: DataTypes.DATE,
+            defaultValue: sequelize.fn('now')
+        },
+        updated_at: {
+            type: DataTypes.DATE,
         }
     }, {
         tableName: 'house',

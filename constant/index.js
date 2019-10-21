@@ -1,0 +1,1 @@
+module.exports.FILES_PARAMS_CHECK = require('./filesParamsCheck');

@@ -1,10 +1,11 @@
 const router = require('express').Router();
 
-const {houseMiddleware, tokenMiddleware} = require('../../middleware');
+const {houseMiddleware, tokenMiddleware, filesMiddleware} = require('../../middleware');
 const {house} = require('../../controllers');
 
 router.post('/',
     tokenMiddleware.checkAccessTokenMiddleware,
+    filesMiddleware.checkFileMiddleware,
     house.createNewHouse
 );
 

@@ -1,9 +1,9 @@
 const router = require('express').Router();
 
-const {userMiddleware, tokenMiddleware} = require('../../middleware');
+const {userMiddleware, tokenMiddleware, filesMiddleware} = require('../../middleware');
 const {user} = require('../../controllers');
 
-router.post('/', user.registerNewUser);
+router.post('/', filesMiddleware.checkFileMiddleware,filesMiddleware.checkNumberOfUserPhoto, user.registerNewUser);
 router.get(`/:userID`,
     userMiddleware.presentUserCheck,
     user.getUserById
