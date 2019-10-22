@@ -1,13 +1,18 @@
-const {authService} = require('../../service');
+const {authService, userService} = require('../../service');
 const {tokenCreator} = require('../../helper');
+const {passwordHashChecker} = require('../../helper');
 
 module.exports = async (req, res, next) => {
     try {
         const {email, password} = req.body;
-        const findingUser = await authService.userAuthService(email, password);
+
+        const findingUser = await authService.userAuthService(email);
+
+        await passwordHashChecker(findingUser.password, password);
 
         if (!findingUser) {
             throw new Error('Incorrect password or email')
+
         }
 
         const tokens = tokenCreator(findingUser);

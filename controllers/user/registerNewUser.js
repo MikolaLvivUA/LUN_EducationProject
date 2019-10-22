@@ -3,12 +3,14 @@ const {resolve} = require('path');
 const uuid = require('uuid').v1();
 
 const {userService, emailService} = require('../../service');
+const {passwordHasher} = require('../../helper');
 
 module.exports = async (req, res) => {
     try {
         const creatingData = req.body;
         const [photo] = req.photos; //Our uploading photo
-        const appRoot = global.appRoot // our mainProject directory
+        const appRoot = global.appRoot; // our mainProject directory
+        creatingData.password = await passwordHasher(creatingData.password);
 
         const registeredUser = await userService.registerUser(creatingData);
 

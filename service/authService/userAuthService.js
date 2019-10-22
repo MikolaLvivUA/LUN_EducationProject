@@ -1,14 +1,13 @@
 const dataBase = require('../../dataBase').getInstance();
 
-module.exports = async (email, password) => {
+module.exports = async (email) => {
     const UserModel = dataBase.getModel('User');
 
     const findingUser = await UserModel.findOne({
         where: {
-            email,
-            password
+            email
         },
-        attributes: ['id']
+        attributes: ['id', 'password']
     });
 
     return findingUser && findingUser.dataValues;

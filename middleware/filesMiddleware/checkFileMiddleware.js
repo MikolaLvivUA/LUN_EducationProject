@@ -25,7 +25,6 @@ module.exports = (req, res, next) => {
         } else {
              next(new CustomError(`File ${name} is not valid`, 400, 'photoFileChecker')); //if our mimetype is not valid
         }
-
     }
     next()
 };
