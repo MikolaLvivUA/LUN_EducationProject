@@ -1,4 +1,4 @@
-const {authService, userService} = require('../../service');
+const {authService} = require('../../service');
 const {tokenCreator} = require('../../helper');
 const {passwordHashChecker} = require('../../helper');
 
