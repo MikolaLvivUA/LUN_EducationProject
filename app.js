@@ -41,7 +41,7 @@ app.set('views', path.join(__dirname, 'static'));
 global.appRoot = __dirname; //Our main directory.
 
 //MODULES
-const {render404} = require ('./controllers');
+const {render404} = require('./controllers');
 const {usersRouter, housesRouter, authRouter} = require('./router');
 //ROUTES
 app.use('/users', usersRouter);

@@ -14,7 +14,8 @@
 
 
 <input type="text" id="message" placeholder="enter your message" style="display: none">
-<button id="send_msg" style="display: block">SEND</button>
+<button id="send_msg" style="display: none">SEND</button>
+<div style="width: 25%; display: none" id="msgBox"></div>
 <button id="exitBtn" style="display: none">EXIT</button>
 
 <script src="/socket.io/socket.io.js"></script>
@@ -27,6 +28,7 @@
     const message = document.getElementById('message');
     const send_msg = document.getElementById('send_msg');
     const exitBtn = document.getElementById('exitBtn');
+    const msgBox = document.getElementById('msgBox');
 
     let room_id;
     let socket_id;
@@ -34,8 +36,10 @@
     joinRoom.onclick = () => {
         joinRoom.style.display = `none`;
         RoomName.style.display = `none`;
+        name.style.display = `none`;
+        msgBox.style.display = `block`;
         message.style.display = `block`;
-        send_msg.style.display = `inline`;
+        send_msg.style.display = `block`;
         exitBtn.style.display = `block`;
 
         room_id = RoomName.value;
@@ -62,15 +66,17 @@
 
         div.innerText = `User: ${resp.id} \n Message: ${resp.data}`;
 
-        document.body.appendChild(div);
+        msgBox.appendChild(div);
     });
 
     exitBtn.onclick = () => {
         joinRoom.style.display = 'inline';
         RoomName.style.display = 'block';
+        name.style.display = 'block';
         message.style.display = `none`;
         send_msg.style.display = `none`;
         exitBtn.style.display = `none`;
+        msgBox.style.display = `none`;
     }
 </script>
 </body>
